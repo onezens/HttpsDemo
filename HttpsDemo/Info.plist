@@ -4,6 +4,23 @@
 <dict>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>onezen.cc</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
+				<false/>
+				<key>NSExceptionMinimumTLSVersion</key>
+				<string>TLSv1.0</string>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key>App Transport Security Settings1</key>
+	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 		<key>NSExceptionDomains</key>
@@ -11,14 +28,14 @@
 			<key>onezen.cc</key>
 			<dict>
 				<key>NSExceptionMinimumTLSVersion</key>
-				<string>TLSv1.1</string>
+				<string>TLSv1.0</string>
 				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
+				<true/>
 			</dict>
 			<key>wanghaizhang.top</key>
 			<dict>
 				<key>NSExceptionMinimumTLSVersion</key>
-				<string>TLSv1</string>
+				<string>TLSv1.0</string>
 				<key>NSExceptionRequiresForwardSecrecy</key>
 				<false/>
 			</dict>

@@ -21,133 +21,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
+}
+
+- (IBAction)singleAuth:(id)sender forEvent:(UIEvent *)event {
     
-//    [self getDataWithURLRequest];
-//
-//    https://101.201.232.5/dcms/PwasAdmin/AreaKh-getCaseType.action
+    [self test1];
+}
+
+
+- (IBAction)doubleAuth:(id)sender forEvent:(UIEvent *)event {
+    
     [[UIAHttps shared]  get:@"/" params:nil success:^(id obj) {
         NSString *resStr = [[NSString alloc] initWithData:obj encoding:NSUTF8StringEncoding];
         NSLog(@"%@", resStr);
     } failure:^(NSError *err) {
         NSLog(@"%@", err);
     }];
+    
+}
+
+- (IBAction)httpGet:(id)sender {
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://api.onezen.cc"]];
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"%@",str);
 }
 
 
-
-
-
-- (void)getDataWithURLRequest {
-    //connection
-    NSString *urlStr = @"https://api.onezen.cc";
-    NSURL *url = [NSURL URLWithString:urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:10];
-    NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    [connection start];
-}
-
-
-- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
-    
-    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-    
-    /*
-     //直接验证服务器是否被认证（serverTrust），这种方式直接忽略证书验证，直接建立连接，但不能过滤其它URL连接，可以理解为一种折衷的处理方式，实际上并不安全，因此不推荐。
-     SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
-     return [[challenge sender] useCredential: [NSURLCredential credentialForTrust: serverTrust]
-     forAuthenticationChallenge: challenge];
-     */
-    if ([[[challenge protectionSpace] authenticationMethod] isEqualToString: NSURLAuthenticationMethodServerTrust]) {
-        do
-        {
-            SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
-            NSCAssert(serverTrust != nil, @"serverTrust is nil");
-            if(nil == serverTrust)
-                break; /* failed */
-            /**
-             *  导入多张CA证书（Certification Authority，支持SSL证书以及自签名的CA）
-             */
-            NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"client" ofType:@"cer"];//自签名证书
-            NSData* caCert = [NSData dataWithContentsOfFile:cerPath];
-            
-            NSString *cerPath2 = [[NSBundle mainBundle] pathForResource:@"server1" ofType:@"cer"];//SSL证书
-            NSData * caCert2 = [NSData dataWithContentsOfFile:cerPath2];
-            
-            NSCAssert(caCert != nil, @"caCert is nil");
-            if(nil == caCert)
-                break; /* failed */
-            
-            NSCAssert(caCert2 != nil, @"caCert2 is nil");
-            if (nil == caCert2) {
-                break;
-            }
-            
-            SecCertificateRef caRef = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)caCert);
-            NSCAssert(caRef != nil, @"caRef is nil");
-            if(nil == caRef)
-                break; /* failed */
-            
-            SecCertificateRef caRef2 = SecCertificateCreateWithData(NULL, (__bridge CFDataRef)caCert2);
-            NSCAssert(caRef2 != nil, @"caRef2 is nil");
-            if(nil == caRef2)
-                break; /* failed */
-            
-            NSArray *caArray = @[(__bridge id)(caRef),(__bridge id)(caRef2)];
-            
-            NSCAssert(caArray != nil, @"caArray is nil");
-            if(nil == caArray)
-                break; /* failed */
-            
-            OSStatus status = SecTrustSetAnchorCertificates(serverTrust, (__bridge CFArrayRef)caArray);
-            NSCAssert(errSecSuccess == status, @"SecTrustSetAnchorCertificates failed");
-            if(!(errSecSuccess == status))
-                break; /* failed */
-            
-            SecTrustResultType result = -1;
-            status = SecTrustEvaluate(serverTrust, &result);
-            if(!(errSecSuccess == status))
-                break; /* failed */
-            NSLog(@"stutas:%d",(int)status);
-            NSLog(@"Result: %d", result);
-            
-            BOOL allowConnect = (result == kSecTrustResultUnspecified) || (result == kSecTrustResultProceed);
-            if (allowConnect) {
-                NSLog(@"success");
-            }else {
-                NSLog(@"error");
-            }
-            /* https://developer.apple.com/library/ios/technotes/tn2232/_index.html */
-            /* https://developer.apple.com/library/mac/qa/qa1360/_index.html */
-            /* kSecTrustResultUnspecified and kSecTrustResultProceed are success */
-            if(! allowConnect)
-            {
-                break; /* failed */
-            }
-            
-#if 0
-            /* Treat kSecTrustResultConfirm and kSecTrustResultRecoverableTrustFailure as success */
-            /*   since the user will likely tap-through to see the dancing bunnies */
-            if(result == kSecTrustResultDeny || result == kSecTrustResultFatalTrustFailure || result == kSecTrustResultOtherError)
-                break; /* failed to trust cert (good in this case) */
-#endif
-            
-            // The only good exit point
-            return [[challenge sender] useCredential: [NSURLCredential credentialForTrust: serverTrust]
-                          forAuthenticationChallenge: challenge];
-            
-        } while(0);
-    }
-    
-    // Bad dog
-    return [[challenge sender] cancelAuthenticationChallenge: challenge];
-    
-}
-//这里的关键在于result参数的值，根据官方文档的说明，判断(result == kSecTrustResultUnspecified) || (result == kSecTrustResultProceed)的值，若为1，则该网站的CA被app信任成功，可以建立数据连接，这意味着所有由该CA签发的各个服务器证书都被信任，而访问其它没有被信任的任何网站都会连接失败。该CA文件既可以是SLL也可以是自签名。
-//
-//NSURLConnection的其它代理方法实现
 
 
 #pragma mark -- connect的异步代理方法
@@ -180,7 +80,7 @@
 
 - (void)test1{
     
-    [self get:@"/v1/video/list" params:nil success:^(id obj) {
+    [self get:@"/" params:nil success:^(id obj) {
         NSString *resStr = [[NSString alloc] initWithData:obj encoding:NSUTF8StringEncoding];
         NSLog(@"%@", resStr);
     } failure:^(NSError *err) {
@@ -190,7 +90,7 @@
 
 - (void)get:(NSString *)url params:(NSDictionary *)params success:(void (^)(id obj))success failure:(void (^)(NSError * err))failure {
     // 1.获得请求管理者
-    AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://api.onezen.cc/"]];
+    AFHTTPSessionManager *mgr = [[AFHTTPSessionManager alloc] initWithBaseURL:[NSURL URLWithString:@"https://www.onezen.cc/"]];
     
     // 2.申明返回的结果是text/html类型
     mgr.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -218,7 +118,7 @@
 
 - (AFSecurityPolicy*)customSecurityPolicy {
     // /先导入证书
-    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"api.onezen.cc" ofType:@"cer"];//证书的路径
+    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"www.onezen.cc" ofType:@"cer"];//证书的路径
     NSData *certData = [NSData dataWithContentsOfFile:cerPath];
     
     

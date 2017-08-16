@@ -24,6 +24,7 @@
 		09D8F4DA1F42EC4F00710913 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D8F4D81F42EC4F00710913 /* Main.storyboard */; };
 		09D8F4DC1F42EC4F00710913 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D8F4DB1F42EC4F00710913 /* Assets.xcassets */; };
 		09D8F4DF1F42EC4F00710913 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D8F4DD1F42EC4F00710913 /* LaunchScreen.storyboard */; };
+		09F7B0E51F445EEA007B7F13 /* www.onezen.cc.cer in Resources */ = {isa = PBXBuildFile; fileRef = 09F7B0E41F445EEA007B7F13 /* www.onezen.cc.cer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		09D8F4DB1F42EC4F00710913 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D8F4DE1F42EC4F00710913 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09D8F4E01F42EC4F00710913 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09F7B0E41F445EEA007B7F13 /* www.onezen.cc.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = www.onezen.cc.cer; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,18 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		09CB6BDD1F443B6C00268893 /* Cer */ = {
+			isa = PBXGroup;
+			children = (
+				09CB6BCB1F43ED6600268893 /* client.p12 */,
+				09F7B0E41F445EEA007B7F13 /* www.onezen.cc.cer */,
+				09CB6BC41F43E2F900268893 /* client.cer */,
+				09CB6BBF1F43DEC400268893 /* server1.cer */,
+				09CB6BC01F43DEC400268893 /* server2.cer */,
+			);
+			path = Cer;
+			sourceTree = "<group>";
+		};
 		09D8F4C31F42EC4F00710913 = {
 			isa = PBXGroup;
 			children = (
@@ -108,13 +122,10 @@
 		09D8F4CE1F42EC4F00710913 /* HttpsDemo */ = {
 			isa = PBXGroup;
 			children = (
+				09CB6BDD1F443B6C00268893 /* Cer */,
 				09CB6B9B1F4300D600268893 /* AFNetworking */,
 				09D8F4D21F42EC4F00710913 /* AppDelegate.h */,
 				09D8F4D31F42EC4F00710913 /* AppDelegate.m */,
-				09CB6BCB1F43ED6600268893 /* client.p12 */,
-				09CB6BC41F43E2F900268893 /* client.cer */,
-				09CB6BBF1F43DEC400268893 /* server1.cer */,
-				09CB6BC01F43DEC400268893 /* server2.cer */,
 				09CB6BC81F43EC6900268893 /* UIAHttps.h */,
 				09CB6BC91F43EC6900268893 /* UIAHttps.m */,
 				09CB6B981F43008000268893 /* ViewController.h */,
@@ -202,6 +213,7 @@
 				09D8F4DA1F42EC4F00710913 /* Main.storyboard in Resources */,
 				09CB6BCC1F43ED6600268893 /* client.p12 in Resources */,
 				09CB6BC51F43E2F900268893 /* client.cer in Resources */,
+				09F7B0E51F445EEA007B7F13 /* www.onezen.cc.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -52,7 +52,6 @@ static UIAHttps *https = nil;
     mgr.requestSerializer.timeoutInterval = 10;
     
     // 加上这行代码，https ssl 验证。
-//    mgr.securityPolicy.allowInvalidCertificates = YES;
     [mgr setSecurityPolicy:[self customSecurityPolicy]];
     [self checkCredential:mgr];
     
