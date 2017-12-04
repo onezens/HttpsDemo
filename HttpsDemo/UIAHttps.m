@@ -75,7 +75,7 @@ static UIAHttps *https = nil;
 - (AFSecurityPolicy*)customSecurityPolicy {
     AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeCertificate];
     
-    NSString * cerPath = [[NSBundle mainBundle] pathForResource:@"server1" ofType:@"cer"];
+    NSString * cerPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"cer"];
     NSData *certData = [NSData dataWithContentsOfFile:cerPath];
     
     NSSet   *dataSet = [NSSet setWithArray:@[certData]];

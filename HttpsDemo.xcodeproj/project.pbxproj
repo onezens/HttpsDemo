@@ -14,9 +14,7 @@
 		09CB6BAC1F4300D600268893 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CB6BA41F4300D600268893 /* AFURLRequestSerialization.m */; };
 		09CB6BAD1F4300D600268893 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CB6BA61F4300D600268893 /* AFURLResponseSerialization.m */; };
 		09CB6BAE1F4300D600268893 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CB6BA81F4300D600268893 /* AFURLSessionManager.m */; };
-		09CB6BC21F43DEC400268893 /* server1.cer in Resources */ = {isa = PBXBuildFile; fileRef = 09CB6BBF1F43DEC400268893 /* server1.cer */; };
-		09CB6BC31F43DEC400268893 /* server2.cer in Resources */ = {isa = PBXBuildFile; fileRef = 09CB6BC01F43DEC400268893 /* server2.cer */; };
-		09CB6BC51F43E2F900268893 /* client.cer in Resources */ = {isa = PBXBuildFile; fileRef = 09CB6BC41F43E2F900268893 /* client.cer */; };
+		09CB6BC21F43DEC400268893 /* server.cer in Resources */ = {isa = PBXBuildFile; fileRef = 09CB6BBF1F43DEC400268893 /* server.cer */; };
 		09CB6BCA1F43EC6900268893 /* UIAHttps.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CB6BC91F43EC6900268893 /* UIAHttps.m */; };
 		09CB6BCC1F43ED6600268893 /* client.p12 in Resources */ = {isa = PBXBuildFile; fileRef = 09CB6BCB1F43ED6600268893 /* client.p12 */; };
 		09D8F4D11F42EC4F00710913 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D8F4D01F42EC4F00710913 /* main.m */; };
@@ -24,7 +22,6 @@
 		09D8F4DA1F42EC4F00710913 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D8F4D81F42EC4F00710913 /* Main.storyboard */; };
 		09D8F4DC1F42EC4F00710913 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D8F4DB1F42EC4F00710913 /* Assets.xcassets */; };
 		09D8F4DF1F42EC4F00710913 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09D8F4DD1F42EC4F00710913 /* LaunchScreen.storyboard */; };
-		09F7B0E51F445EEA007B7F13 /* www.onezen.cc.cer in Resources */ = {isa = PBXBuildFile; fileRef = 09F7B0E41F445EEA007B7F13 /* www.onezen.cc.cer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,9 +40,7 @@
 		09CB6BA61F4300D600268893 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		09CB6BA71F4300D600268893 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		09CB6BA81F4300D600268893 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
-		09CB6BBF1F43DEC400268893 /* server1.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = server1.cer; sourceTree = "<group>"; };
-		09CB6BC01F43DEC400268893 /* server2.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = server2.cer; sourceTree = "<group>"; };
-		09CB6BC41F43E2F900268893 /* client.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.cer; sourceTree = "<group>"; };
+		09CB6BBF1F43DEC400268893 /* server.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.cer; sourceTree = "<group>"; };
 		09CB6BC81F43EC6900268893 /* UIAHttps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAHttps.h; sourceTree = "<group>"; };
 		09CB6BC91F43EC6900268893 /* UIAHttps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIAHttps.m; sourceTree = "<group>"; };
 		09CB6BCB1F43ED6600268893 /* client.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = client.p12; sourceTree = "<group>"; };
@@ -57,7 +52,6 @@
 		09D8F4DB1F42EC4F00710913 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D8F4DE1F42EC4F00710913 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09D8F4E01F42EC4F00710913 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09F7B0E41F445EEA007B7F13 /* www.onezen.cc.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = www.onezen.cc.cer; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				09CB6BCB1F43ED6600268893 /* client.p12 */,
-				09F7B0E41F445EEA007B7F13 /* www.onezen.cc.cer */,
-				09CB6BC41F43E2F900268893 /* client.cer */,
-				09CB6BBF1F43DEC400268893 /* server1.cer */,
-				09CB6BC01F43DEC400268893 /* server2.cer */,
+				09CB6BBF1F43DEC400268893 /* server.cer */,
 			);
 			path = Cer;
 			sourceTree = "<group>";
@@ -207,13 +198,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				09D8F4DF1F42EC4F00710913 /* LaunchScreen.storyboard in Resources */,
-				09CB6BC31F43DEC400268893 /* server2.cer in Resources */,
-				09CB6BC21F43DEC400268893 /* server1.cer in Resources */,
+				09CB6BC21F43DEC400268893 /* server.cer in Resources */,
 				09D8F4DC1F42EC4F00710913 /* Assets.xcassets in Resources */,
 				09D8F4DA1F42EC4F00710913 /* Main.storyboard in Resources */,
 				09CB6BCC1F43ED6600268893 /* client.p12 in Resources */,
-				09CB6BC51F43E2F900268893 /* client.cer in Resources */,
-				09F7B0E51F445EEA007B7F13 /* www.onezen.cc.cer in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

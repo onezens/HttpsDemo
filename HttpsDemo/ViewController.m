@@ -18,18 +18,19 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
 
-
-}
-
+/**
+ AFNetwork 单向认证可以被抓包
+ */
 - (IBAction)singleAuth:(id)sender forEvent:(UIEvent *)event {
     
     [self test1];
 }
 
 
+/**
+ AFNetwork 双向认证不可以被抓包
+ */
 - (IBAction)doubleAuth:(id)sender forEvent:(UIEvent *)event {
     
     [[UIAHttps shared]  get:@"/" params:nil success:^(id obj) {
@@ -41,6 +42,10 @@
     
 }
 
+
+/**
+ http 请求
+ */
 - (IBAction)httpGet:(id)sender {
     NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://api.onezen.cc"]];
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -78,13 +83,17 @@
 
 //***************************************************************************************
 
+
+/**
+ AFNetwork 单向认证可以被抓包
+ */
 - (void)test1{
     
     [self get:@"/" params:nil success:^(id obj) {
         NSString *resStr = [[NSString alloc] initWithData:obj encoding:NSUTF8StringEncoding];
         NSLog(@"%@", resStr);
     } failure:^(NSError *err) {
-        
+        NSLog(@"%@", err);
     }];
 }
 
@@ -118,7 +127,7 @@
 
 - (AFSecurityPolicy*)customSecurityPolicy {
     // /先导入证书
-    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"www.onezen.cc" ofType:@"cer"];//证书的路径
+    NSString *cerPath = [[NSBundle mainBundle] pathForResource:@"server" ofType:@"cer"];//证书的路径
     NSData *certData = [NSData dataWithContentsOfFile:cerPath];
     
     
@@ -134,7 +143,7 @@
     //假如证书的域名与你请求的域名不一致，需把该项设置为NO；如设成NO的话，即服务器使用其他可信任机构颁发的证书，也可以建立连接，这个非常危险，建议打开。
     //置为NO，主要用于这种情况：客户端请求的是子域名，而证书上的是另外一个域名。因为SSL证书上的域名是独立的，假如证书上注册的域名是www.google.com，那么mail.google.com是无法验证通过的；当然，有钱可以注册通配符的域名*.google.com，但这个还是比较贵的。
     //如置为NO，建议自己添加对应域名的校验逻辑。
-    securityPolicy.validatesDomainName = NO;
+    securityPolicy.validatesDomainName = YES;
     
     securityPolicy.pinnedCertificates = [NSSet setWithObject:certData];
     
